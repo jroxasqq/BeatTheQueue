@@ -3,7 +3,7 @@ import "dotenv";
 process.loadEnvFile();
 
 type Config = {
-  googlePlacesAPIKey: string;
+  port: number;
 };
 
 function getEnvOrThrow(key: string) {
@@ -12,7 +12,6 @@ function getEnvOrThrow(key: string) {
   return value;
 }
 
-export const config = {
-  port: getEnvOrThrow("PORT"),
-  googlePlacesAPIKey: getEnvOrThrow("GOOGLE_PLACES_API_KEY"),
+export const config: Config = {
+  port: parseInt(getEnvOrThrow("PORT")),
 };

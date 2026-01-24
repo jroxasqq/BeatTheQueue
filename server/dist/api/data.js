@@ -1,7 +1,6 @@
-import express from "express";
-import { config } from "../config.js";
-export function handlerData(req, res) {
-    const keyExists = config.googlePlacesAPIKey ? "yes" : "no";
-    res.status(200).send(keyExists);
+import data from "../data.json" with { type: "json" };
+import { respondWithJSON } from "./middleware.js";
+export async function handlerGetData(req, res) {
+    respondWithJSON(res, 200, data);
 }
 //# sourceMappingURL=data.js.map
