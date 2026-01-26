@@ -1,6 +1,8 @@
 import "dotenv";
 type Config = {
-    port: number;
+    baseUrl: string;
+    clientPort: number;
+    serverPort: number;
     googlePlacesAPIKey: string;
 };
 export declare const config: Config;

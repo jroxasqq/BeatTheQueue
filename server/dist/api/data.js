@@ -19,7 +19,6 @@ export async function handlerGetMapData(req, res) {
     ];
     markers.forEach((marker) => params.append("markers", marker));
     const response = await fetch(`${base_url}?${params}`);
-    console.log(response);
     res.set("Content-Type", "image/png");
     const buffer = await response.arrayBuffer();
     res.status(200).send(Buffer.from(buffer));

@@ -7,7 +7,9 @@ function getEnvOrThrow(key) {
     return value;
 }
 export const config = {
-    port: parseInt(getEnvOrThrow("PORT")),
+    baseUrl: "http://localhost",
+    clientPort: parseInt(getEnvOrThrow("CLIENT_PORT")),
+    serverPort: parseInt(getEnvOrThrow("SERVER_PORT")),
     googlePlacesAPIKey: getEnvOrThrow("GOOGLE_PLACES_API_KEY"),
 };
 //# sourceMappingURL=config.js.map
