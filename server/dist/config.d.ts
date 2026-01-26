@@ -1,6 +1,8 @@
 import "dotenv";
-export declare const config: {
-    port: string;
-    besttimesAPIKey: string;
+type Config = {
+    port: number;
+    googlePlacesAPIKey: string;
 };
+export declare const config: Config;
+export {};
 //# sourceMappingURL=config.d.ts.map

@@ -7,7 +7,7 @@ function getEnvOrThrow(key) {
     return value;
 }
 export const config = {
-    port: getEnvOrThrow("PORT"),
-    besttimesAPIKey: getEnvOrThrow("BESTTIMES_API_KEY"),
+    port: parseInt(getEnvOrThrow("PORT")),
+    googlePlacesAPIKey: getEnvOrThrow("GOOGLE_PLACES_API_KEY"),
 };
 //# sourceMappingURL=config.js.map

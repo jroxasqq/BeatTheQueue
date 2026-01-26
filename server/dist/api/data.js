@@ -1,6 +1,27 @@
-import data from "../data.json" with { type: "json" };
 import { respondWithJSON } from "./middleware.js";
+import { config } from "../config.js";
 export async function handlerGetData(req, res) {
-    respondWithJSON(res, 200, data);
+    respondWithJSON(res, 200, {});
+}
+export async function handlerGetMapData(req, res) {
+    const base_url = "https://maps.googleapis.com/maps/api/staticmap";
+    const params = new URLSearchParams({
+        center: "Brooklyn Bridge,New York,NY",
+        zoom: "13",
+        size: "600x300",
+        maptype: "roadmap",
+        key: config.googlePlacesAPIKey,
+    });
+    const markers = [
+        "color:blue|label:S|40.702147,-74.015794",
+        "color:green|label:G|40.711614,-74.012318",
+        "color:red|label:C|40.718217,-73.998284",
+    ];
+    markers.forEach((marker) => params.append("markers", marker));
+    const response = await fetch(`${base_url}?${params}`);
+    console.log(response);
+    res.set("Content-Type", "image/png");
+    const buffer = await response.arrayBuffer();
+    res.status(200).send(Buffer.from(buffer));
 }
 //# sourceMappingURL=data.js.map

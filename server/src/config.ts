@@ -4,6 +4,7 @@ process.loadEnvFile();
 
 type Config = {
   port: number;
+  googlePlacesAPIKey: string;
 };
 
 function getEnvOrThrow(key: string) {
@@ -14,4 +15,5 @@ function getEnvOrThrow(key: string) {
 
 export const config: Config = {
   port: parseInt(getEnvOrThrow("PORT")),
+  googlePlacesAPIKey: getEnvOrThrow("GOOGLE_PLACES_API_KEY"),
 };
