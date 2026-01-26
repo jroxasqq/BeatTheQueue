@@ -1,5 +1,6 @@
 import type { Restaurant } from "../../types";
 
+// Each "name" is unique for React's "key" prop.
 const data: Restaurant[] = [
   {
     name: "resto1",
@@ -17,7 +18,7 @@ const RestaurantsGrid = () => {
     <>
       <div className="grid grid-cols-2 gap-x-6 gap-y-0">
         {data.map((resto) => (
-          <div className="h-120 text-black">
+          <div className="h-120 text-black" key={resto.name}>
             <div className="h-[70%] w-full rounded-4xl overflow-hidden">
               <img
                 className="w-full"
