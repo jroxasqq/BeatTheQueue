@@ -6,7 +6,7 @@ export function respondWithJSON(res, code, payload) {
 export function respondWithError(res, code, message) {
     respondWithJSON(res, code, { error: message });
 }
-export function errorMiddleWare(err, req, res) {
+export function errorMiddleWare(err, req, res, next) {
     return respondWithError(res, 500, err.message);
 }
 //# sourceMappingURL=middleware.js.map
