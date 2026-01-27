@@ -1,20 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import RestaurantsGrid from "../components/home/RestaurantsGrid";
 import RestaurantsMap from "../components/home/RestaurantsMap";
-import { config } from "../config";
 
 const HomePage = () => {
   const [isMap, setIsMap] = useState(false);
-
-  useEffect(() => {
-    if (isMap) {
-      (async function fetchMap() {
-        const res = await fetch(`${config.baseUrl}:${config.serverPort}`);
-        console.log(res);
-      })();
-    }
-  }, [isMap]);
 
   return (
     <div className="w-screen p-8">
