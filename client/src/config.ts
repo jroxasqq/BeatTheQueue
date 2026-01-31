@@ -1,6 +1,7 @@
 type Config = {
   baseUrl: string;
   serverPort: number;
+  googleMapsApiKey: string;
 };
 
 function getEnvOrThrow(key: string) {
@@ -12,4 +13,5 @@ function getEnvOrThrow(key: string) {
 export const config: Config = {
   baseUrl: `${window.location.protocol}//${window.location.hostname}`,
   serverPort: parseInt(getEnvOrThrow("VITE_SERVER_PORT")),
+  googleMapsApiKey: getEnvOrThrow("VITE_GOOGLE_MAPS_API_KEY"),
 };

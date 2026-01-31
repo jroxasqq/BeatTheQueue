@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import RestaurantsGrid from "../components/home/RestaurantsGrid";
-import RestaurantsMap from "../components/home/RestaurantsMap";
+import InteractiveMap from "../components/home/InteractiveMap";
 
 const HomePage = () => {
   const [isMap, setIsMap] = useState(false);
@@ -17,7 +17,7 @@ const HomePage = () => {
           View as {`${isMap ? "grid" : "map"}`}
         </button>
       </div>
-      {isMap ? <RestaurantsMap /> : <RestaurantsGrid />}
+      {isMap ? <InteractiveMap /> : <RestaurantsGrid />}
     </div>
   );
 };
