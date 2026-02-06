@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { AdvancedMarker, InfoWindow } from "@vis.gl/react-google-maps";
 
-type InteractiveMapMarkerProps = {
-  position: {
-    lat: number;
-    lng: number;
-  };
-  description: string;
-};
+import type { InteractiveMapMarkerProps } from "../../types";
 
 const InteractiveMapMarker = ({ position, description }: InteractiveMapMarkerProps) => {
   const [openMarker, setOpenMarker] = useState(false);

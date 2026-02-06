@@ -1,30 +1,38 @@
-import type { Restaurant } from "../../types";
+import { useEffect, useState } from "react";
 
-// Each "name" is unique for React's "key" prop.
-const data: Restaurant[] = [
-  {
-    name: "resto1",
-    suburb: "Blacktown",
-  },
-  { name: "resto2", suburb: "Blacktown" },
-  { name: "resto3", suburb: "Blacktown" },
-  { name: "resto4", suburb: "Blacktown" },
-  { name: "resto5", suburb: "Blacktown" },
-  { name: "resto6", suburb: "Blacktown" },
-];
+import { config } from "../../config";
+import type { RestaurantData } from "../../types";
+
+type RestaurantDataGrid = Pick<RestaurantData, "name" | "suburb" | "imageSrc">;
 
 const RestaurantsGrid = () => {
+  const [restaurants, setRestaurants] = useState<RestaurantDataGrid[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`${config.baseUrl}:${config.serverPort}/map`);
+      const data: RestaurantData[] = await res.json();
+      const newRestaurants: RestaurantDataGrid[] = data.map((r) => ({
+        name: r.name,
+        suburb: r.suburb,
+        imageSrc: r.imageSrc,
+      }));
+      setRestaurants(() => newRestaurants);
+    })();
+  }, []);
+
   return (
-    <>
-      <div className="grid grid-cols-2 gap-x-6 gap-y-0">
-        {data.map((resto) => (
-          <div className="h-120 text-black" key={resto.name}>
+    <div className="grid grid-cols-2 gap-x-6 gap-y-0">
+      {restaurants &&
+        restaurants.map((resto, idx) => (
+          <div className="h-120 text-black" key={idx}>
             <div className="h-[70%] w-full rounded-4xl overflow-hidden">
               <img
                 className="w-full"
                 src={
-                  resto.imageSrc ??
-                  "https://www.kikkoman.eu/fileadmin/_processed_/4/2/csm_sushi-kakkoii_eb92ad14ee.webp"
+                  resto.imageSrc.length
+                    ? resto.imageSrc
+                    : "https://www.kikkoman.eu/fileadmin/_processed_/4/2/csm_sushi-kakkoii_eb92ad14ee.webp"
                 }
               />
             </div>
@@ -32,8 +40,7 @@ const RestaurantsGrid = () => {
             <p className="text-lg truncate">{resto.suburb}</p>
           </div>
         ))}
-      </div>
-    </>
+    </div>
   );
 };
 
