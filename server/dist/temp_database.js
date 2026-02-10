@@ -63,6 +63,14 @@ const database = [
         longitude: 151.0042283344121,
         imageSrc: "",
     },
+    {
+        name: "Meet Fresh - Sydney",
+        suburb: "Haymarket",
+        description: "Taiwanese desserts",
+        latitude: -33.87778264184541,
+        longitude: 151.20286239623985,
+        imageSrc: "",
+    },
 ];
 export default database;
 //# sourceMappingURL=temp_database.js.map

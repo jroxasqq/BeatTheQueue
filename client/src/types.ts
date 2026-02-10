@@ -7,10 +7,12 @@ export type RestaurantData = {
   longitude: number;
 };
 
+export type MapCoords = {
+  lat: number;
+  lng: number;
+};
+
 export type InteractiveMapMarkerProps = {
-  position: {
-    lat: number;
-    lng: number;
-  };
+  position: MapCoords;
   description: string;
 };
